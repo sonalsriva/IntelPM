@@ -7,15 +7,19 @@ import java.util.List;
 
 import com.opencsv.CSVWriter;
 
+
+/**********Writting Data to CSV file **************/
+
 public class WriteToFileCSV
  {
 	  
-  public static void PrintData(List<String> Patientid,List<String> PersonalIdentifier,int colCount)
+  public void PrintData(List<String> patientid,List<String> personalIdentifier,List<String> dobList,List<String> admitDateList)
   { 
-      // first create file object for file placed at location  
+
+      // Create file object for file placed at project location  
       String FILE_NAME = "PatientData.csv"; 
       File file = new File(FILE_NAME);
-      //System.out.println(file.getAbsolutePath());
+      System.out.println(file.getAbsolutePath());
       
       try 
       { 
@@ -24,11 +28,26 @@ public class WriteToFileCSV
           // create CSVWriter object filewriter object as parameter         
           CSVWriter writer = null;       
           writer = new CSVWriter(outputfile);
-                    
-          for(int row=0; row< Patientid.size(); row++)
+          
+          //Specify Header name in file
+          int row = 0;
+          String[] headerName = new String[4];
+          headerName[0] = "Patientid";
+          headerName[1] = "Date of Birth";
+          headerName[2] = "PersonalIdentifier";
+          headerName[3] = "Admit date";
+          writer.writeNext(headerName);
+          
+          //Write values in CSV
+          for(row=1; row< patientid.size(); row++)
           {
-              String[] str = new String[] {Patientid.get(row)};
-              //System.out.println(Patientid.get(row));
+
+              String[] str = new String[4];
+              str[0] = patientid.get(row);
+              str[1] = dobList.get(row);
+              str[2] = personalIdentifier.get(row);
+              str[3] = admitDateList.get(row);
+              
               writer.writeNext(str);  
           } 
           
@@ -37,36 +56,8 @@ public class WriteToFileCSV
  
       }
       catch (IOException e) { 
-          // TODO Auto-generated catch block 
           e.printStackTrace(); 
       }  
   }
-  
-  /*  public void PrintData(List<String> Patientid_unique) throws IOException  ------ older implementation
-  {
-	  
-   String FILE_NAME = "PatientData.csv"; 
-   File f = new File(FILE_NAME);
-   System.out.println(f.getAbsolutePath());
-   
-   FileWriter fw = new FileWriter(FILE_NAME);
-   PrintWriter out = new PrintWriter(fw);
-   
-   for (int k=0; k<10; k++)
-   {
-   for (int j=0; j<10; j++)
-   {
-	   out.print(Patientid_unique.get(j));
-	   out.print(",");
-   }
-   }   
-   //Flush the output to the file
-   out.flush();      
-   //Close the Print Writer
-   out.close();   
-   //Close the File Writer
-   fw.close();       
-   
-  }*/
   
  }
