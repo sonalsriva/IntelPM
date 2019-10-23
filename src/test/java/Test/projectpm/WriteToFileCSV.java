@@ -35,7 +35,7 @@ public class WriteToFileCSV
           headerName[0] = "Patientid";
           headerName[1] = "Date of Birth";
           headerName[2] = "PersonalIdentifier";
-          headerName[3] = "Admit date";
+          headerName[3] = "admit date";
           writer.writeNext(headerName);
           
           //Write values in CSV
