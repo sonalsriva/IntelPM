@@ -84,20 +84,18 @@ public class GenericFunction {
 	    for(int n = 1; n <=nrecords; n++){	    	
 	    /************ Admit Date *************************/	    
 	    
-		    Calendar cal = Calendar.getInstance();
-		    int rand_int1 = rand.nextInt(99);
-		    
+		Calendar cal = Calendar.getInstance();
+		int rand_int1 = rand.nextInt(99);
 	    	cal.add(Calendar.DAY_OF_MONTH, -rand_int1);   	
 	    	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 	    	String admitDat = formatter.format(cal.getTime());
 
 	    /************ Birth Date *************************/	
-	    	int year = randBetween(maxCriteria-35, maxCriteria);
-	        gc.set(gc.YEAR, year);
-	        int dayOfYear = randBetween(1, gc.getActualMaximum(gc.DAY_OF_YEAR));
-	        gc.set(gc.DAY_OF_YEAR, dayOfYear);
-	        String dob2 = gc.get(gc.YEAR) + "-" + (gc.get(gc.MONTH) + 1) + "-" + gc.get(gc.DAY_OF_MONTH);
-
+		int rand_int2 = randBetween(65, 100);
+	    	cal.add(Calendar.YEAR, -rand_int2);    
+	        SimpleDateFormat formter = new SimpleDateFormat("yyyy-MM-dd");
+	    	String dob2 = formter.format(cal.getTime());
+	    	
 	        dob.add(dob2);
 	        admitDate.add(admitDat);
 	    }
